@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class HandGestureIdentifier : MonoBehaviour
 {
-    public HandGestures handGesture;
+    public HandGesture handGesture;
     public bool isLeftHand;
     private SelectorUnityEventWrapper selectorEvent;
     void Start()
