@@ -17,6 +17,11 @@ public class Brightness : MonoBehaviour
 
     public float CurrentVal => exposure.keyValue.value;
 
+    private void Update()
+    {
+        Debug.Log(CurrentVal);
+    }
+
     private void Awake()
     {
         brightness.TryGetSettings(out exposure);
@@ -24,6 +29,7 @@ public class Brightness : MonoBehaviour
 
     public void Adjust(float val)
     {
+        
         exposure.keyValue.value = val > 0 ? val : 0.02f;
     }
 }

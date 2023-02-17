@@ -8,15 +8,11 @@ public class HandInputManager : MonoBehaviour
 {
     [SerializeField] private HandGestureIdentifier[] gestureIdentifiers;
 
-    public static UnityEvent<HandGesture, bool> activateGesture = new UnityEvent<HandGesture, bool>();
-    public static UnityEvent<HandGesture, bool> deactivateGesture = new UnityEvent<HandGesture, bool>();
+    public static UnityEvent<SystemAction, bool> activateGesture = new UnityEvent<SystemAction, bool>();
+    public static UnityEvent<SystemAction, bool> deactivateGesture = new UnityEvent<SystemAction, bool>();
+    public static SystemAction passedAction;
+    
     // Start is called before the first frame update
-    void Start()
-    {
-        activateGesture.AddListener(ActivateGesture);
-        // activateGesture.AddListener();
-        deactivateGesture.AddListener(DeactivateGesture); 
-    }
 
     // Update is called once per frame
     void Update()
@@ -24,23 +20,18 @@ public class HandInputManager : MonoBehaviour
         
     }
 
-    private void ActivateGesture(HandGesture currentHandGesture, bool isLeftHand)
+    public static void ActivateGesture(SystemAction executeAction, bool isLeftHand)
     {
-        Debug.Log(currentHandGesture);
-        Debug.Log(isLeftHand);
+        passedAction = executeAction;
+        Debug.Log(passedAction);
+        ServiceWrapper.Instance.ExecuteServiceUtil(passedAction);
     }
     
-    private void DeactivateGesture(HandGesture currentHandGesture, bool isLeftHand)
+    public static void DeactivateGesture(SystemAction executeAction, bool isLeftHand)
     {
-        Debug.Log(currentHandGesture);
-        Debug.Log(isLeftHand);
+        ServiceWrapper.Instance.ExecuteServiceUtil(passedAction);
     }
-
-    private void OnDestroy()
-    {
-        activateGesture.RemoveListener(ActivateGesture);
-        deactivateGesture.RemoveListener(DeactivateGesture); 
-    }
+    
 }
 
 [Serializable]

@@ -5,5 +5,6 @@
     BrightnessDown=1,
     VolumeUp=2,
     VolumeDown=3,
-    Mute=4
+    Mute=4,
+    Enable
 }

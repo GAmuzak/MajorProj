@@ -7,29 +7,23 @@ using UnityEngine.Events;
 
 public class HandGestureIdentifier : MonoBehaviour
 {
-    public HandGesture handGesture;
+    public SystemAction utilityGesture;
     public bool isLeftHand;
     private SelectorUnityEventWrapper selectorEvent;
     void Start()
     {
-        selectorEvent = GetComponent<SelectorUnityEventWrapper>();
-        selectorEvent.WhenSelected.AddListener(SelectedGesture);
-        selectorEvent.WhenUnselected.AddListener(UnSelectedGesture);
+        Debug.Log($"{gameObject.name}: {utilityGesture}");
     }
 
-    void SelectedGesture()
+    public void SelectedGesture()
     {
-        HandInputManager.activateGesture?.Invoke(handGesture, isLeftHand);
+        Debug.Log(utilityGesture);
+        HandInputManager.ActivateGesture(utilityGesture, isLeftHand);
     }
     
-    void UnSelectedGesture()
+    public void UnSelectedGesture()
     {
-        HandInputManager.deactivateGesture?.Invoke(handGesture, isLeftHand);
+        HandInputManager.DeactivateGesture(utilityGesture, isLeftHand);
     }
-
-    private void OnDestroy()
-    {
-        selectorEvent.WhenSelected.RemoveListener(SelectedGesture);
-        selectorEvent.WhenUnselected.RemoveListener(UnSelectedGesture);
-    }
+    
 }
