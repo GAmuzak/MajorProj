@@ -30,7 +30,7 @@ MonoBehaviour:
       _firstState: 3
       _secondState: 4
     - _thresholdMidpoint: 235
-      _thresholdWidth: 10
+      _thresholdWidth: 15.6
       _firstState: 4
       _secondState: 5
   - _feature: 2
