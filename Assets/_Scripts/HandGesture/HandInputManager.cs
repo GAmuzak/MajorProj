@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.iOS;
 
 public class HandInputManager : MonoBehaviour
 {
@@ -11,10 +12,8 @@ public class HandInputManager : MonoBehaviour
     public static UnityEvent<SystemAction, bool> activateGesture = new UnityEvent<SystemAction, bool>();
     public static UnityEvent<SystemAction, bool> deactivateGesture = new UnityEvent<SystemAction, bool>();
     public static SystemAction passedAction;
-    
-    // Start is called before the first frame update
 
-    // Update is called once per frame
+    private Timer gestureDeselectCoolDown = new Timer();
     void Update()
     {
         
@@ -29,6 +28,7 @@ public class HandInputManager : MonoBehaviour
     
     public static void DeactivateGesture(SystemAction executeAction, bool isLeftHand)
     {
+        
         ServiceWrapper.Instance.ExecuteServiceUtil(passedAction);
     }
     
