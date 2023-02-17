@@ -23,6 +23,7 @@ public class HandGestureIdentifier : MonoBehaviour
     
     public void UnSelectedGesture()
     {
+        
         HandInputManager.DeactivateGesture(utilityGesture, isLeftHand);
     }
     
