@@ -24,7 +24,6 @@ public class Brightness : MonoBehaviour
 
     public void Adjust(float val)
     {
-        
         exposure.keyValue.value = val > 0 ? val : 0.02f;
     }
 }
