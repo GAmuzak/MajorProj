@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 public class ServiceWrapper : MonoBehaviour
 {
-    private Slider slider;
+    [SerializeField] EnumIInteractableDict enumIInteractable;
 
     private static ServiceWrapper _instance;
     
@@ -33,11 +34,16 @@ public class ServiceWrapper : MonoBehaviour
         _instance = this;
     }
 
-    private void PassData(HandGesture currentHandGesture, bool isLeftHand)
+    public void ExecuteServiceUtil(SystemAction triggeredAction)
     {
-        switch (currentHandGesture)
-        {
-            
-        }
+        enumIInteractable[triggeredAction].GetComponent<IInteractable>().Interact();
+    }
+
+    public void EndServiceUtil(SystemAction triggeredAction)
+    {
+        enumIInteractable[triggeredAction].GetComponent<IInteractable>().Complete();
     }
 }
+
+[Serializable]
+public class EnumIInteractableDict : SerializableDictionary<SystemAction, GameObject> {}

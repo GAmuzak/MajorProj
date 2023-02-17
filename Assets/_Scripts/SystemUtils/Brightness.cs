@@ -6,44 +6,24 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
 
-public class Brightness : MonoBehaviour, IInteractable
+public class Brightness : MonoBehaviour
 {
+    [Range(0.01f,0.5f)] [SerializeField] private float sensitivity;
     [SerializeField] private PostProcessProfile brightness;
-    // [SerializeField] private PostProcessLayer layer;
-    
 
     private AutoExposure exposure;
+    
+    public float Sensitivity => sensitivity;
+
+    public float CurrentVal => exposure.keyValue.value;
+
     private void Awake()
     {
         brightness.TryGetSettings(out exposure);
     }
 
-    public void Interact(float val)
-    {
-        AdjustBrightness(val);
-    }
-
-    private void AdjustBrightness(float val)
+    public void Adjust(float val)
     {
         exposure.keyValue.value = val > 0 ? val : 0.02f;
-    }
-    
-    /*
-     * UNUSED OVERLOADED INTERFACE FUNCTIONS BELOW
-     */
-    
-    public void Interact()
-    {
-        throw new Exception("ERROR: Incorrect Overload Called: " + gameObject.name + "; Brightness;");
-    }
-
-    public void Interact(bool state)
-    {
-        throw new Exception("ERROR: Incorrect Overload Called: " + gameObject.name + "; Brightness;");
-    }
-
-    public void Interact(int val)
-    {
-        throw new Exception("ERROR: Incorrect Overload Called: " + gameObject.name + "; Brightness;");
     }
 }
