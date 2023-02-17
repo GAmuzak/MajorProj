@@ -39,7 +39,8 @@ public class ServiceWrapper : MonoBehaviour
         if(triggeredAction == SystemAction.NULL || isServiceEnabled) return;
         if (triggeredAction == SystemAction.Enable)
         {
-            isServiceEnabled = !isServiceEnabled; return;
+            isServiceEnabled = !isServiceEnabled;
+            return;
         }
         enumIInteractable[triggeredAction].GetComponent<IInteractable>().Interact();
     }
