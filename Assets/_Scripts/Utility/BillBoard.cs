@@ -9,19 +9,19 @@ public class BillBoard : MonoBehaviour
     public bool IsEnabled;
     
     private Transform cam;
-    private Image image;
+    private SpriteRenderer sprite;
 
     private void Awake()
     {
         if (Camera.main != null) cam = Camera.main.gameObject.transform;
-        image = GetComponent<Image>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     public void ChangeTint(bool state)
     {
-        Color imageColor = image.color;
+        Color imageColor = sprite.color;
         imageColor.a = state ? 50 : 100;
-        image.color = imageColor;
+        sprite.color = imageColor;
     }
     
     private void Update()
