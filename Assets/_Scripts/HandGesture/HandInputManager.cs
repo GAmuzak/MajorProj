@@ -8,12 +8,13 @@ public class HandInputManager : MonoBehaviour
 {
     [SerializeField] private HandGestureIdentifier[] gestureIdentifiers;
 
-    public static UnityEvent<HandGestures, bool> activateGesture = new UnityEvent<HandGestures, bool>();
-    public static UnityEvent<HandGestures, bool> deactivateGesture = new UnityEvent<HandGestures, bool>();
+    public static UnityEvent<HandGesture, bool> activateGesture = new UnityEvent<HandGesture, bool>();
+    public static UnityEvent<HandGesture, bool> deactivateGesture = new UnityEvent<HandGesture, bool>();
     // Start is called before the first frame update
     void Start()
     {
         activateGesture.AddListener(ActivateGesture);
+        // activateGesture.AddListener();
         deactivateGesture.AddListener(DeactivateGesture); 
     }
 
@@ -23,13 +24,13 @@ public class HandInputManager : MonoBehaviour
         
     }
 
-    private void ActivateGesture(HandGestures currentHandGesture, bool isLeftHand)
+    private void ActivateGesture(HandGesture currentHandGesture, bool isLeftHand)
     {
         Debug.Log(currentHandGesture);
         Debug.Log(isLeftHand);
     }
     
-    private void DeactivateGesture(HandGestures currentHandGesture, bool isLeftHand)
+    private void DeactivateGesture(HandGesture currentHandGesture, bool isLeftHand)
     {
         Debug.Log(currentHandGesture);
         Debug.Log(isLeftHand);
@@ -43,7 +44,7 @@ public class HandInputManager : MonoBehaviour
 }
 
 [Serializable]
-public enum HandGestures
+public enum HandGesture
 {
     NULL = -1,
     ThumbsUp

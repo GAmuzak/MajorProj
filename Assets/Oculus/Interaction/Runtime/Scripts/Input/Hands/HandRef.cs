@@ -25,7 +25,7 @@ namespace Oculus.Interaction.Input
         [SerializeField, Interface(typeof(IHand))]
         private MonoBehaviour _hand;
 
-        public IHand Hand { get; private set; }
+        public IHand Hand { get; set; }
 
         public Handedness Handedness => Hand.Handedness;
 
