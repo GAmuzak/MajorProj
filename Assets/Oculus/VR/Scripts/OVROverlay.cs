@@ -1,14 +1,22 @@
-/************************************************************************************
-Copyright : Copyright (c) Facebook Technologies, LLC and its affiliates. All rights reserved.
-
-Your use of this SDK or tool is subject to the Oculus SDK License Agreement, available at
-https://developer.oculus.com/licenses/oculussdk/
-
-Unless required by applicable law or agreed to in writing, the Utilities SDK distributed
-under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
-ANY KIND, either express or implied. See the License for the specific language governing
-permissions and limitations under the License.
-************************************************************************************/
+/*
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
+ *
+ * Licensed under the Oculus SDK License Agreement (the "License");
+ * you may not use the Oculus SDK except in compliance with the License,
+ * which is provided at the time of installation or download, or which
+ * otherwise accompanies this software in either electronic or hard copy form.
+ *
+ * You may obtain a copy of the License at
+ *
+ * https://developer.oculus.com/licenses/oculussdk/
+ *
+ * Unless required by applicable law or agreed to in writing, the Oculus SDK
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 using UnityEngine;
 using System;
@@ -61,6 +69,7 @@ public class OVROverlay : MonoBehaviour
 		SurfaceProjectedPassthrough = OVRPlugin.OverlayShape.SurfaceProjectedPassthrough,
 		Fisheye = OVRPlugin.OverlayShape.Fisheye,
 		KeyboardHandsPassthrough = OVRPlugin.OverlayShape.KeyboardHandsPassthrough,
+		KeyboardMaskedHandsPassthrough = OVRPlugin.OverlayShape.KeyboardMaskedHandsPassthrough,
 	}
 
 	/// <summary>
@@ -199,7 +208,7 @@ public class OVROverlay : MonoBehaviour
 	}
 
 	[SerializeField]
-	private bool _previewInEditor = false;
+	internal bool _previewInEditor = false;
 
 #if UNITY_EDITOR
 	private GameObject previewObject;
@@ -305,6 +314,7 @@ public class OVROverlay : MonoBehaviour
 			}
 		}
 
+
 		bool needsSetup = (
 			isOverridePending ||
 			layerDesc.MipLevels != mipLevels ||
@@ -314,13 +324,17 @@ public class OVROverlay : MonoBehaviour
 			layerDesc.LayerFlags != flags ||
 			!layerDesc.TextureSize.Equals(size) ||
 			layerDesc.Shape != shape ||
-			layerCompositionDepth != compositionDepth);
+			layerCompositionDepth != compositionDepth)
+			;
 
 		if (!needsSetup)
 			return false;
 
 		OVRPlugin.LayerDesc desc = OVRPlugin.CalculateLayerDesc(shape, layout, size, mipLevels, sampleCount, etFormat, flags);
+
 		OVRPlugin.EnqueueSetupLayer(desc, compositionDepth, layerIdPtr);
+
+
 		layerId = (int)layerIdHandle.Target;
 
 		if (layerId > 0)
@@ -841,17 +855,13 @@ public class OVROverlay : MonoBehaviour
 
 	public static bool IsPassthroughShape(OverlayShape shape)
 	{
-		return shape == OverlayShape.ReconstructionPassthrough
-			|| shape == OverlayShape.KeyboardHandsPassthrough
-			|| shape == OverlayShape.SurfaceProjectedPassthrough;
+		return OVRPlugin.IsPassthroughShape((OVRPlugin.OverlayShape)shape);
 	}
 
 #region Unity Messages
 
 	void Awake()
 	{
-		Debug.Log("Overlay Awake");
-
 		if (Application.isPlaying)
 		{
 			if (tex2DMaterial == null)

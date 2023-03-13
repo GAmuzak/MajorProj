@@ -1,5 +1,6 @@
 ﻿/*
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
  *
  * This source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
@@ -26,9 +27,15 @@ namespace Facebook.WitAi.CallbackHandlers
 
         [FormerlySerializedAs("valuePaths")]
         [Header("Value Matching")]
+#if UNITY_2021_3_2 || UNITY_2021_3_3 || UNITY_2021_3_4 || UNITY_2021_3_5
+        [NonReorderable]
+#endif
         [SerializeField] public ValuePathMatcher[] valueMatchers;
 
         [Header("Output")]
+#if UNITY_2021_3_2 || UNITY_2021_3_3 || UNITY_2021_3_4 || UNITY_2021_3_5
+        [NonReorderable]
+#endif
         [SerializeField] private FormattedValueEvents[] formattedValueEvents;
         [SerializeField] private MultiValueEvent onMultiValueEvent = new MultiValueEvent();
 

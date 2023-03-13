@@ -8,9 +8,10 @@ using Object = UnityEngine.Object;
 public class ServiceWrapper : MonoBehaviour
 {
     [SerializeField] EnumIInteractableDict enumIInteractable;
-    
+
+    private Stopwatch timer;
     private static ServiceWrapper _instance;
-    private bool isServiceEnabled;
+    [SerializeField] private Timer isServiceEnabled;
     public static ServiceWrapper Instance
     {
         get
@@ -34,20 +35,22 @@ public class ServiceWrapper : MonoBehaviour
         _instance = this;
     }
 
-    public void ExecuteServiceUtil(SystemAction triggeredAction)
+    public void ExecuteService(SystemAction triggeredAction)
     {
-        if(triggeredAction == SystemAction.NULL || isServiceEnabled) return;
+        if(triggeredAction == SystemAction.NULL || !isServiceEnabled.State) return;
         if (triggeredAction == SystemAction.Enable)
         {
-            isServiceEnabled = !isServiceEnabled;
+            isServiceEnabled.State = true;
             return;
         }
         enumIInteractable[triggeredAction].GetComponent<IInteractable>().Interact();
     }
 
-    public void EndServiceUtil(SystemAction triggeredAction)
+    public void EndService(SystemAction triggeredAction)
     {
         if(triggeredAction == SystemAction.NULL) return;
+        isServiceEnabled.State = false;
+        StartCoroutine(isServiceEnabled.Cooldown(true));
         enumIInteractable[triggeredAction].GetComponent<IInteractable>().Complete();
     }
 }

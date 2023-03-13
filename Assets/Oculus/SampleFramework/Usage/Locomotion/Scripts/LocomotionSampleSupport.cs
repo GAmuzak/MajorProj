@@ -12,7 +12,6 @@ language governing permissions and limitations under the license.
 using UnityEngine;
 using System.Collections;
 using System.Diagnostics;
-using Unity.VisualScripting;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 using UnityEngine.EventSystems;
@@ -20,11 +19,8 @@ using UnityEngine.Events;
 
 public class LocomotionSampleSupport : MonoBehaviour
 {
-    // [SerializeField] private Notification mainNotification;
-    
     private LocomotionController lc;
     private bool inMenu = false;
-
     private LocomotionTeleport TeleportController
     {
         get
@@ -35,11 +31,10 @@ public class LocomotionSampleSupport : MonoBehaviour
 
     public void Start()
     {
-        // mainNotification = FindObjectOfType<Notification>();
         lc = FindObjectOfType<LocomotionController>();
-        // DebugUIBuilder.instance.AddButton("Node Teleport w/ A", SetupNodeTeleport);
+        DebugUIBuilder.instance.AddButton("Node Teleport w/ A", SetupNodeTeleport);
         DebugUIBuilder.instance.AddButton("Dual-stick teleport", SetupTwoStickTeleport);
-        // DebugUIBuilder.instance.AddButton("L Strafe R Teleport", SetupLeftStrafeRightTeleport);
+        DebugUIBuilder.instance.AddButton("L Strafe R Teleport", SetupLeftStrafeRightTeleport);
         //DebugUIBuilder.instance.AddButton("R Turn L Teleport", SetupRightTurnLeftTeleport);
         DebugUIBuilder.instance.AddButton("Walk Only", SetupWalkOnly);
 
@@ -49,7 +44,7 @@ public class LocomotionSampleSupport : MonoBehaviour
         {
             Debug.LogError("Need EventSystem");
         }
-        SetupWalkOnly();
+		SetupTwoStickTeleport();
 
         // SAMPLE-ONLY HACK:
         // Due to restrictions on how Unity project settings work, we just hackily set up default
@@ -60,17 +55,12 @@ public class LocomotionSampleSupport : MonoBehaviour
 
     public void Update()
     {
-        if(OVRInput.GetDown(OVRInput.Button.Two))
+        if(OVRInput.GetDown(OVRInput.Button.Two) || OVRInput.GetDown(OVRInput.Button.Start))
         {
             if (inMenu) DebugUIBuilder.instance.Hide();
             else DebugUIBuilder.instance.Show();
             inMenu = !inMenu;
         }
-        // if(OVRInput.GetDown(OVRInput.Button.One))
-        // {
-        //     mainNotification.GameObject().SetActive(!mainNotification.GameObject().activeSelf);
-        //     mainNotification.SetLocation();
-        // }
     }
 
     [Conditional("DEBUG_LOCOMOTION_PANEL")]
@@ -200,8 +190,6 @@ public class LocomotionSampleSupport : MonoBehaviour
 
         var orient = TeleportController.GetComponent<TeleportOrientationHandlerThumbstick>();
         orient.Thumbstick = OVRInput.Controller.LTouch;
-        
-        DebugUIBuilder.instance.Hide();
     }
 
 
@@ -227,16 +215,12 @@ public class LocomotionSampleSupport : MonoBehaviour
         input.AimingController = OVRInput.Controller.RTouch;
         //var input = TeleportController.GetComponent<TeleportAimHandlerLaser>();
         //input.AimingController = OVRInput.Controller.RTouch;
-        
-        DebugUIBuilder.instance.Hide();
     }
 
     // Symmetrical controls. Forward or back on stick initiates teleport, then stick allows orient.
     // Snap turns allowed.
     void SetupTwoStickTeleport()
     {
-        DebugUIBuilder.instance.Hide();
-        
         SetupTeleportDefaults();
         TeleportController.EnableRotation(true, false, false, true);
         TeleportController.EnableMovement(false, false, false, false);
@@ -250,8 +234,6 @@ public class LocomotionSampleSupport : MonoBehaviour
         ActivateHandlers<TeleportInputHandlerTouch, TeleportAimHandlerParabolic, TeleportTargetHandlerPhysical, TeleportOrientationHandlerThumbstick, TeleportTransitionBlink>();
         var orient = TeleportController.GetComponent<TeleportOrientationHandlerThumbstick>();
         orient.Thumbstick = OVRInput.Controller.Touch;
-        
-        
     }
 
 	/*
@@ -276,16 +258,12 @@ public class LocomotionSampleSupport : MonoBehaviour
     // Shut down teleport. Basically reverts to OVRPlayerController.
     void SetupWalkOnly()
     {
-        
-        DebugUIBuilder.instance.Hide();
-
         SetupTeleportDefaults();
         TeleportController.enabled = false;
         lc.PlayerController.EnableLinearMovement = true;
         //lc.PlayerController.SnapRotation = true;
         lc.PlayerController.RotationEitherThumbstick = false;
         //lc.PlayerController.FixedSpeedSteps = 1;
-        
     }
 
     // 
@@ -303,7 +281,5 @@ public class LocomotionSampleSupport : MonoBehaviour
         ActivateHandlers<TeleportInputHandlerTouch, TeleportAimHandlerParabolic, TeleportTargetHandlerPhysical, TeleportOrientationHandlerThumbstick, TeleportTransitionBlink>();
         var orient = TeleportController.GetComponent<TeleportOrientationHandlerThumbstick>();
         orient.Thumbstick = OVRInput.Controller.RTouch;
-        
-        DebugUIBuilder.instance.Hide();
     }
 }

@@ -9,33 +9,33 @@ public class DemoCallbackClass : MonoBehaviour
         //For Continuous Actions
         if (OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger))
         {
-            ServiceWrapper.Instance.ExecuteServiceUtil(SystemAction.BrightnessUp);
+            ServiceWrapper.Instance.ExecuteService(SystemAction.BrightnessUp);
         }
 
         else if (OVRInput.Get(OVRInput.Button.SecondaryIndexTrigger))
         {
-            ServiceWrapper.Instance.ExecuteServiceUtil(SystemAction.BrightnessDown);
+            ServiceWrapper.Instance.ExecuteService(SystemAction.BrightnessDown);
         }
         
         if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
         {
-            ServiceWrapper.Instance.ExecuteServiceUtil(SystemAction.VolumeUp);
+            ServiceWrapper.Instance.ExecuteService(SystemAction.VolumeUp);
         }
 
         else if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
         {
-            ServiceWrapper.Instance.ExecuteServiceUtil(SystemAction.VolumeDown);
+            ServiceWrapper.Instance.ExecuteService(SystemAction.VolumeDown);
         }
 
         
         //For One-Time Actions
         if (OVRInput.Get(OVRInput.Button.One))
         {
-            ServiceWrapper.Instance.ExecuteServiceUtil(SystemAction.Mute);
+            ServiceWrapper.Instance.ExecuteService(SystemAction.Mute);
         }
         else if (OVRInput.GetUp(OVRInput.Button.One))
         {
-            ServiceWrapper.Instance.EndServiceUtil(SystemAction.Mute);
+            ServiceWrapper.Instance.EndService(SystemAction.Mute);
         }
     }
 }

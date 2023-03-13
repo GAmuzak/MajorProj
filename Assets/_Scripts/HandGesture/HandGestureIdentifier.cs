@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class HandGestureIdentifier : MonoBehaviour
 {
     public SystemAction utilityGesture;
-    public bool isLeftHand;
+    public GestureContinuity gestureContinuity;
     private SelectorUnityEventWrapper selectorEvent;
     void Start()
     {
@@ -18,12 +18,19 @@ public class HandGestureIdentifier : MonoBehaviour
     public void SelectedGesture()
     {
         Debug.Log(utilityGesture);
-        HandInputManager.ActivateGesture(utilityGesture, isLeftHand);
+        HandInputManager.ActivateGesture(utilityGesture, gestureContinuity);
     }
     
     public void UnSelectedGesture()
     {
-        HandInputManager.DeactivateGesture(utilityGesture, isLeftHand);
+        Debug.Log($"{"Unselected"}: {utilityGesture}");
+        HandInputManager.DeactivateGesture(utilityGesture);
     }
     
+}
+
+public enum GestureContinuity
+{
+    Discrete = 0,
+    Continuous = 1
 }

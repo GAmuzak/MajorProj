@@ -1,42 +1,38 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class HandInputManager : MonoBehaviour
 {
-    [SerializeField] private HandGestureIdentifier[] gestureIdentifiers;
-
     public static UnityEvent<SystemAction, bool> activateGesture = new UnityEvent<SystemAction, bool>();
     public static UnityEvent<SystemAction, bool> deactivateGesture = new UnityEvent<SystemAction, bool>();
     public static SystemAction passedAction;
-    
-    // Start is called before the first frame update
+    public static GestureContinuity continuity;
 
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        if (continuity == GestureContinuity.Continuous)
+        {
+            ServiceWrapper.Instance.ExecuteService(passedAction);
+        }
     }
 
-    public static void ActivateGesture(SystemAction executeAction, bool isLeftHand)
+    public static void ActivateGesture(SystemAction executeAction, GestureContinuity _continuity)
     {
         passedAction = executeAction;
+        continuity = _continuity;
         Debug.Log(passedAction);
-        ServiceWrapper.Instance.ExecuteServiceUtil(passedAction);
+        ServiceWrapper.Instance.ExecuteService(passedAction);
     }
     
-    public static void DeactivateGesture(SystemAction executeAction, bool isLeftHand)
+    public static void DeactivateGesture(SystemAction executeAction)
     {
-        ServiceWrapper.Instance.ExecuteServiceUtil(passedAction);
+        Debug.Log($"{"Unselected in Input Manager"}: {executeAction}");
+        ServiceWrapper.Instance.EndService(executeAction);
     }
     
-}
-
-[Serializable]
-public enum HandGesture
-{
-    NULL = -1,
-    ThumbsUp
 }
