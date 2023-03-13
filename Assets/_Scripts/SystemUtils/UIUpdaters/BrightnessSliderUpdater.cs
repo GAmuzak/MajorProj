@@ -6,18 +6,25 @@ using UnityEngine.UI;
 
 public class BrightnessSliderUpdater : MonoBehaviour
 {
-    private Slider slider;
     private Brightness brightness;
+    private Slider slider;
 
     private void Awake()
     {
         brightness = FindObjectOfType<Brightness>();
         slider = GetComponent<Slider>();
-        slider.maxValue = 1f;
+        slider.maxValue = 2f;
+        slider.value = 1f;
+    }
+
+    private void OnDisable()
+    {
+        // enabled = true;
     }
 
     private void Update()
     {
-        slider.normalizedValue = brightness.CurrentVal;
+        Debug.Log(brightness.CurrentVal);
+        slider.value = brightness.CurrentVal;
     }
 }

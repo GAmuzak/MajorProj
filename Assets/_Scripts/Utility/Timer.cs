@@ -10,6 +10,7 @@ public class Timer
 
     public IEnumerator Cooldown(bool finalState)
     {
+        Debug.Log("tIMER sTARTED");
         yield return new WaitForSeconds(Time);
         State = finalState;
     }

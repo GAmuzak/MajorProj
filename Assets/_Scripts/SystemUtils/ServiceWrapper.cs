@@ -11,7 +11,7 @@ public class ServiceWrapper : MonoBehaviour
 
     private Stopwatch timer;
     private static ServiceWrapper _instance;
-    private Timer isServiceEnabled;
+    [SerializeField] private Timer isServiceEnabled;
     public static ServiceWrapper Instance
     {
         get
@@ -33,14 +33,9 @@ public class ServiceWrapper : MonoBehaviour
         }
         DontDestroyOnLoad(this);
         _instance = this;
-        isServiceEnabled = new Timer()
-        {
-            State = false,
-            Time = 0.1f
-        };
     }
 
-    public void ExecuteServiceUtil(SystemAction triggeredAction)
+    public void ExecuteService(SystemAction triggeredAction)
     {
         if(triggeredAction == SystemAction.NULL || !isServiceEnabled.State) return;
         if (triggeredAction == SystemAction.Enable)
@@ -51,11 +46,11 @@ public class ServiceWrapper : MonoBehaviour
         enumIInteractable[triggeredAction].GetComponent<IInteractable>().Interact();
     }
 
-    public void EndServiceUtil(SystemAction triggeredAction)
+    public void EndService(SystemAction triggeredAction)
     {
+        if(triggeredAction == SystemAction.NULL) return;
         isServiceEnabled.State = false;
         StartCoroutine(isServiceEnabled.Cooldown(true));
-        if(triggeredAction == SystemAction.NULL) return;
         enumIInteractable[triggeredAction].GetComponent<IInteractable>().Complete();
     }
 }
