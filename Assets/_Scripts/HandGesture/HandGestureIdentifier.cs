@@ -14,7 +14,7 @@ public class HandGestureIdentifier : MonoBehaviour
     void Start()
     {
         Debug.Log($"{gameObject.name}: {utilityGesture}");
-        gestureIconManager = GetComponent<GestureIconManager>();
+        gestureIconManager = FindObjectOfType<GestureIconManager>();
     }
 
     public void SelectedGesture()

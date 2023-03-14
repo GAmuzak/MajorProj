@@ -31,8 +31,6 @@ public class GestureIcon : MonoBehaviour
     private void Start()
     {
         
-        
-        //Debug.Log(targetBone.Transform.gameObject.name);
     }
 
     private void TryGetBoneData()
@@ -41,11 +39,13 @@ public class GestureIcon : MonoBehaviour
         {
             case Handedness.Left:
                 targetHandData = gestureIconManager.leftHandSkeleton;
-                targetBone = targetHandData!.Bones[(int)targetBoneID];
+                if(targetHandData.Bones[(int)targetBoneID] != null)
+                    targetBone = targetHandData.Bones[(int)targetBoneID];
                 break;
             case Handedness.Right:
                 targetHandData = gestureIconManager.rightHandSkeleton;
-                targetBone = targetHandData!.Bones[(int)targetBoneID];
+                if(targetHandData.Bones[(int)targetBoneID] != null)
+                    targetBone = targetHandData.Bones[(int)targetBoneID];
                 break;
         }
     }

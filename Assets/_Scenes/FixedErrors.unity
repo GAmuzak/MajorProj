@@ -124,6 +124,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &292339 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3428564721525691165, guid: 32e25b9fdc3b6624a9738130e05811ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 1719810325}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c1eedca9cf7d34499e068b6a90e7b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &23893239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -466,6 +478,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956467642089150472, guid: 8da897bda4e8dc747b76ed113f8ca075,
+        type: 3}
+      propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 292339}
+    - target: {fileID: 4956467642089150472, guid: 8da897bda4e8dc747b76ed113f8ca075,
+        type: 3}
+      propertyPath: _whenUnselected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 292339}
+    - target: {fileID: 4956467642089150472, guid: 8da897bda4e8dc747b76ed113f8ca075,
+        type: 3}
+      propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetIconVisibility
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956467642089150472, guid: 8da897bda4e8dc747b76ed113f8ca075,
+        type: 3}
+      propertyPath: _whenUnselected.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetIconVisibility
       objectReference: {fileID: 0}
     - target: {fileID: 4956467642627117787, guid: 8da897bda4e8dc747b76ed113f8ca075,
         type: 3}
@@ -2578,7 +2610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af18d54727031742bc8522c4b07636c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 0.15
+  sensitivity: 0.01
   brightness: {fileID: 11400000, guid: 6b2b912b2401ab240ab27af92f866f06, type: 2}
 --- !u!1 &1482218164
 GameObject:
@@ -3133,7 +3165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6980085f13e2d2046abb7b30f3b444d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 0.15
+  sensitivity: 0.01
 --- !u!1001 &1719810325
 PrefabInstance:
   m_ObjectHideFlags: 0
