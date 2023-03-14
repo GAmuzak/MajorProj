@@ -15,9 +15,19 @@ public class VolumeSliderUpdater : MonoBehaviour
         slider.maxValue = 1f;
         volume = FindObjectOfType<Volume>();
     }
-
-    private void Update()
+    
+    private void OnEnable()
     {
-        slider.normalizedValue = volume.CurrentVal;
+        VolumeChange.OnVolumeChange += Updater;
+    }
+
+    private void OnDisable()
+    {
+        VolumeChange.OnVolumeChange -= Updater;
+    }
+
+    private void Updater(float newVal)
+    {
+        slider.normalizedValue = newVal;
     }
 }

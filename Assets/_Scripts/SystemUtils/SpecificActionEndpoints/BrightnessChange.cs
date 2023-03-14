@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BrightnessChange : MonoBehaviour, IInteractable
 {
+    public static event Action<float> OnBrightnessChange;
     [SerializeField] private IncreaseOrDecrease state;
 
     private Brightness brightness;
@@ -18,7 +19,9 @@ public class BrightnessChange : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        brightness.Adjust(brightness.CurrentVal+ upOrDown*brightness.Sensitivity);
+        float newVal = brightness.CurrentVal+ upOrDown*brightness.Sensitivity;
+        brightness.Adjust(newVal);
+        OnBrightnessChange?.Invoke(newVal);
     }
 
     public void Complete()

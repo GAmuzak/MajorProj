@@ -41,11 +41,11 @@ public class GestureIcon : MonoBehaviour
         {
             case Handedness.Left:
                 targetHandData = gestureIconManager.leftHandSkeleton;
-                targetBone = targetHandData.Bones[(int)targetBoneID];
+                targetBone = targetHandData!.Bones[(int)targetBoneID];
                 break;
             case Handedness.Right:
                 targetHandData = gestureIconManager.rightHandSkeleton;
-                targetBone = targetHandData.Bones[(int)targetBoneID];
+                targetBone = targetHandData!.Bones[(int)targetBoneID];
                 break;
         }
     }

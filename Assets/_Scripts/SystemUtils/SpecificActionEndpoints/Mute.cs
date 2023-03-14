@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Mute : MonoBehaviour, IInteractable
 {
+    public static event Action<bool> onMuteToggle; 
+
     [SerializeField] private bool state=false;
     
     private Volume volume;
@@ -16,8 +18,9 @@ public class Mute : MonoBehaviour, IInteractable
     public void Interact()
     {
         if (!canMute) return;
-        volume.ToggleMute(!state);
         state = !state;
+        volume.ToggleMute(state);
+        onMuteToggle?.Invoke(state);
         canMute = false;
     }
 
