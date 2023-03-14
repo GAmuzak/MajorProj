@@ -6,5 +6,5 @@
     VolumeUp=2,
     VolumeDown=3,
     Mute=4,
-    Enable
+    Enable = 5
 }

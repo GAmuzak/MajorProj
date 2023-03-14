@@ -1,13 +1,11 @@
 /*
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ * All rights reserved.
  *
  * This source code is licensed under the license found in the
  * LICENSE file in the root directory of this source tree.
  */
 
-using System;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace Facebook.WitAi
@@ -50,6 +48,7 @@ namespace Facebook.WitAi
             public string UnderstandingViewerAbortButtonLabel;
             public string UnderstandingViewerListeningLabel;
             public string UnderstandingViewerLoadingLabel;
+            public string UnderstandingViewerSelectLabel;
             [Header("Settings Texts")]
             public string SettingsTitleLabel;
             public string SettingsServerTokenLabel;

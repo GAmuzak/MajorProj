@@ -8,13 +8,13 @@ public class Volume : MonoBehaviour
     [Range(0.01f,0.5f)] [SerializeField] private float sensitivity;
     
     private float prevVal;
-    private HandGesture inputTigger;
-    
+
     public float CurrentVal => AudioListener.volume;
     public float Sensitivity => sensitivity;
 
     public void Adjust(float val)
     {
+        if (val > 1f) return;
         AudioListener.volume = val;
     }
 

@@ -12,26 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cfe1df7ed391a24fbe2a2d275e81b06, type: 3}
   m_Name: RingFingerPinch
   m_EditorClassIdentifier: 
-  _shapeName: Fist
+  _shapeName: RingFingerPinch
   _thumbFeatureConfigs:
     _value: []
   _indexFeatureConfigs:
-    _value:
-    - _mode: 0
-      _feature: 0
-      _state: 0
+    _value: []
   _middleFeatureConfigs:
-    _value:
-    - _mode: 0
-      _feature: 0
-      _state: 0
+    _value: []
   _ringFeatureConfigs:
     _value:
     - _mode: 0
       _feature: 3
       _state: 9
   _pinkyFeatureConfigs:
-    _value:
-    - _mode: 0
-      _feature: 0
-      _state: 0
+    _value: []
