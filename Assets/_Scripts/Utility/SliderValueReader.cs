@@ -12,6 +12,6 @@ public class SliderValueReader : MonoBehaviour
     
     void Update()
     {
-        tmp.text = slider.value.ToString();
+        tmp.text = (slider.value*100f).ToString("0");
     }
 }

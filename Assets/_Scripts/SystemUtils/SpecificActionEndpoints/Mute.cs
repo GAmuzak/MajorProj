@@ -18,8 +18,8 @@ public class Mute : MonoBehaviour, IInteractable
     public void Interact()
     {
         if (!canMute) return;
+        volume.ToggleMute(!state);
         state = !state;
-        volume.ToggleMute(state);
         onMuteToggle?.Invoke(state);
         canMute = false;
     }

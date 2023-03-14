@@ -7,12 +7,10 @@ using UnityEngine.UI;
 public class MuteUpdater : MonoBehaviour
 {
     private Toggle toggle;
-    private Volume volume;
 
     private void Awake()
     {
         toggle = GetComponent<Toggle>();
-        volume = FindObjectOfType<Volume>();
     }
 
     private void OnEnable()
@@ -27,6 +25,7 @@ public class MuteUpdater : MonoBehaviour
 
     private void Updater(bool state)
     {
+        Debug.Log(state);
         toggle.isOn = state;
     }
 }
