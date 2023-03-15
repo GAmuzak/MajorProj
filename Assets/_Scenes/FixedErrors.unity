@@ -404,11 +404,61 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: _transformFeatureConfigs._values.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _transformFeatureConfigs._values.Array.data[0]._state
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _transformFeatureConfigs._values.Array.data[1]._state
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _transformFeatureConfigs._values.Array.data[0]._feature
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _transformFeatureConfigs._values.Array.data[1]._feature
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4956467640921032281, guid: 8da897bda4e8dc747b76ed113f8ca075,
         type: 3}
       propertyPath: _hand
       value: 
       objectReference: {fileID: 154898076}
+    - target: {fileID: 4956467640944371613, guid: 8da897bda4e8dc747b76ed113f8ca075,
+        type: 3}
+      propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956467640944371613, guid: 8da897bda4e8dc747b76ed113f8ca075,
+        type: 3}
+      propertyPath: _whenUnselected.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956467640944371613, guid: 8da897bda4e8dc747b76ed113f8ca075,
+        type: 3}
+      propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956467640944371613, guid: 8da897bda4e8dc747b76ed113f8ca075,
+        type: 3}
+      propertyPath: _whenUnselected.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956467640944371613, guid: 8da897bda4e8dc747b76ed113f8ca075,
+        type: 3}
+      propertyPath: _whenSelected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956467640944371613, guid: 8da897bda4e8dc747b76ed113f8ca075,
+        type: 3}
+      propertyPath: _whenUnselected.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4956467640944371614, guid: 8da897bda4e8dc747b76ed113f8ca075,
         type: 3}
       propertyPath: _hand
@@ -419,6 +469,21 @@ PrefabInstance:
       propertyPath: _hand
       value: 
       objectReference: {fileID: 154898069}
+    - target: {fileID: 4956467641010728463, guid: 8da897bda4e8dc747b76ed113f8ca075,
+        type: 3}
+      propertyPath: _transformFeatureConfigs._values.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956467641010728463, guid: 8da897bda4e8dc747b76ed113f8ca075,
+        type: 3}
+      propertyPath: _transformFeatureConfigs._values.Array.data[1]._state
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956467641010728463, guid: 8da897bda4e8dc747b76ed113f8ca075,
+        type: 3}
+      propertyPath: _transformFeatureConfigs._values.Array.data[1]._feature
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4956467641846999635, guid: 8da897bda4e8dc747b76ed113f8ca075,
         type: 3}
       propertyPath: m_Name
@@ -504,6 +569,11 @@ PrefabInstance:
       propertyPath: _hand
       value: 
       objectReference: {fileID: 154898069}
+    - target: {fileID: 4956467642596782702, guid: 8da897bda4e8dc747b76ed113f8ca075,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4956467642627117787, guid: 8da897bda4e8dc747b76ed113f8ca075,
         type: 3}
       propertyPath: _hand
