@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class VolumeChange : MonoBehaviour, IInteractable
 {
+    public static event Action<float> OnVolumeChange;
+    
     [SerializeField] private IncreaseOrDecrease state;
     
     private Volume volume;
@@ -16,7 +18,9 @@ public class VolumeChange : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        volume.Adjust(volume.CurrentVal+upOrDown*volume.Sensitivity);
+        float newVal = volume.CurrentVal+upOrDown*volume.Sensitivity;
+        volume.Adjust(newVal);
+        OnVolumeChange?.Invoke(newVal);
     }
 
     public void Complete()

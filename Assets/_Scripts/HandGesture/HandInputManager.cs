@@ -11,11 +11,10 @@ public class HandInputManager : MonoBehaviour
     public static UnityEvent<SystemAction, bool> deactivateGesture = new UnityEvent<SystemAction, bool>();
     public static SystemAction passedAction;
     public static GestureContinuity continuity;
-
-    
+    private static bool isAnalog;
     void Update()
     {
-        if (continuity == GestureContinuity.Continuous)
+        if (isAnalog)
         {
             ServiceWrapper.Instance.ExecuteService(passedAction);
         }
@@ -24,7 +23,7 @@ public class HandInputManager : MonoBehaviour
     public static void ActivateGesture(SystemAction executeAction, GestureContinuity _continuity)
     {
         passedAction = executeAction;
-        continuity = _continuity;
+        isAnalog = _continuity == GestureContinuity.Continuous;
         Debug.Log(passedAction);
         ServiceWrapper.Instance.ExecuteService(passedAction);
     }
@@ -32,6 +31,7 @@ public class HandInputManager : MonoBehaviour
     public static void DeactivateGesture(SystemAction executeAction)
     {
         Debug.Log($"{"Unselected in Input Manager"}: {executeAction}");
+        isAnalog = false;
         ServiceWrapper.Instance.EndService(executeAction);
     }
     

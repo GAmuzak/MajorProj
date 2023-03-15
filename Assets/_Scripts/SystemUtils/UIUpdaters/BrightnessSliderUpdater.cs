@@ -17,14 +17,18 @@ public class BrightnessSliderUpdater : MonoBehaviour
         slider.value = 1f;
     }
 
-    private void OnDisable()
+    private void OnEnable()
     {
-        // enabled = true;
+        BrightnessChange.OnBrightnessChange += Updater;
     }
 
-    private void Update()
+    private void OnDisable()
     {
-        Debug.Log(brightness.CurrentVal);
-        slider.value = brightness.CurrentVal;
+        BrightnessChange.OnBrightnessChange -= Updater;
+    }
+
+    private void Updater(float newVal)
+    {
+        slider.value = newVal;
     }
 }
