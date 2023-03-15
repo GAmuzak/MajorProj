@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrightnessChange : MonoBehaviour, IInteractable
+public class BrightnessChange : InteractableMonoBehaviour
 {
     public static event Action<float> OnBrightnessChange;
     [SerializeField] private IncreaseOrDecrease state;
@@ -17,14 +17,14 @@ public class BrightnessChange : MonoBehaviour, IInteractable
         upOrDown = state == IncreaseOrDecrease.Increase ? 1 : -1;
     }
 
-    public void Interact()
+    public override void Interact()
     {
         float newVal = brightness.CurrentVal+ upOrDown*brightness.Sensitivity;
         brightness.Adjust(newVal);
         OnBrightnessChange?.Invoke(newVal);
     }
 
-    public void Complete()
+    public override void Complete()
     {
         //Not Relevant yet
     }

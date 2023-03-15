@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class VolumeChange : MonoBehaviour, IInteractable
+public class VolumeChange : InteractableMonoBehaviour
 {
     public static event Action<float> OnVolumeChange;
     
@@ -16,14 +16,14 @@ public class VolumeChange : MonoBehaviour, IInteractable
         volume = transform.parent.GetComponent<Volume>();
     }
 
-    public void Interact()
+    public override void Interact()
     {
         float newVal = volume.CurrentVal+upOrDown*volume.Sensitivity;
         volume.Adjust(newVal);
         OnVolumeChange?.Invoke(newVal);
     }
 
-    public void Complete()
+    public override void Complete()
     {
         //Not Relevant
     }

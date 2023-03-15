@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
-using Object = UnityEngine.Object;
 
 public class ServiceWrapper : MonoBehaviour
 {
-    [SerializeField] EnumIInteractableDict enumIInteractable;
+    [SerializeField] public EnumIInteractableDict enumIInteractable;
 
     private Stopwatch timer;
     private static ServiceWrapper _instance;
@@ -43,7 +41,9 @@ public class ServiceWrapper : MonoBehaviour
             isServiceEnabled.State = true;
             return;
         }
-        enumIInteractable[triggeredAction].GetComponent<IInteractable>().Interact();
+
+        Debug.Log(triggeredAction);
+        enumIInteractable[triggeredAction].Interact();
     }
 
     public void EndService(SystemAction triggeredAction)
@@ -51,9 +51,9 @@ public class ServiceWrapper : MonoBehaviour
         if(triggeredAction == SystemAction.NULL) return;
         isServiceEnabled.State = false;
         StartCoroutine(isServiceEnabled.Cooldown(true));
-        enumIInteractable[triggeredAction].GetComponent<IInteractable>().Complete();
+        enumIInteractable[triggeredAction].Complete();
     }
 }
 
 [Serializable]
-public class EnumIInteractableDict : SerializableDictionary<SystemAction, GameObject> {}
+public class EnumIInteractableDict : SerializableDictionary<SystemAction, InteractableMonoBehaviour> {}

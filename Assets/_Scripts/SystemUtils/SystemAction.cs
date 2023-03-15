@@ -6,5 +6,9 @@
     VolumeUp=2,
     VolumeDown=3,
     Mute=4,
-    Enable = 5
+    Enable = 5,
+    WindowUP = 6,
+    WindowDown = 7,
+    WindowLeft = 8,
+    WindowRight = 9
 }

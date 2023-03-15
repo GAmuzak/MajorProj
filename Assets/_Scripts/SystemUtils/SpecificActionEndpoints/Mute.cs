@@ -1,7 +1,8 @@
 ﻿using System;
+using OculusSampleFramework;
 using UnityEngine;
 
-public class Mute : MonoBehaviour, IInteractable
+public class Mute : InteractableMonoBehaviour
 {
     public static event Action<bool> onMuteToggle; 
 
@@ -15,7 +16,7 @@ public class Mute : MonoBehaviour, IInteractable
         volume = transform.parent.GetComponent<Volume>();
     }
 
-    public void Interact()
+    public override void Interact()
     {
         if (!canMute) return;
         volume.ToggleMute(!state);
@@ -24,7 +25,7 @@ public class Mute : MonoBehaviour, IInteractable
         canMute = false;
     }
 
-    public void Complete()
+    public override void Complete()
     {
         canMute = true;
     }
