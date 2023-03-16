@@ -8,20 +8,18 @@ public class WindowMover : InteractableMonoBehaviour
     public Direction moveDirection;
 
     private float sensitivity;
-    private RectTransform windowTransform;
     private WindowManager windowManager;
     private static Window targetWindow;
     
-    private readonly Dictionary<Direction, Vector3> directionToVector = new Dictionary<Direction, Vector3>()
+    private readonly Dictionary<Direction, Vector2Int> directionToVector = new Dictionary<Direction, Vector2Int>()
     {
-        { Direction.UP, Vector3.up },
-        { Direction.DOWN, Vector3.down },
-        { Direction.LEFT, Vector3.left },
-        { Direction.RIGHT, Vector3.right },
+        { Direction.UP, Vector2Int.up },
+        { Direction.DOWN, Vector2Int.down },
+        { Direction.LEFT, Vector2Int.left },
+        { Direction.RIGHT, Vector2Int.right },
     };
     private void Start()
     {
-        windowTransform = GetComponent<RectTransform>();
         windowManager = GetComponent<WindowManager>();
         sensitivity = windowManager.sensitivity;
     }
@@ -33,7 +31,41 @@ public class WindowMover : InteractableMonoBehaviour
 
     public override void Interact()
     {
-        targetWindow.transform.position += directionToVector[moveDirection] * sensitivity;
+        WindowContainer currentContainer = targetWindow.transform.parent.GetComponentInParent<WindowContainer>();
+        Vector2Int targetContainerIndex = currentContainer.containerIndex + directionToVector[moveDirection];
+        
+        bool isXInRange = targetContainerIndex.x < windowManager.numberOfWindows.x && targetContainerIndex.x >= 0;
+        bool isYInRange = targetContainerIndex.y < windowManager.numberOfWindows.y && targetContainerIndex.y >= 0;
+        if (!isXInRange || !isYInRange) return; // opposite of (isXInRange && IsYInRange) 
+
+        WindowContainer targetContainer = windowManager.WindowContainer2DArray[targetContainerIndex.x, targetContainerIndex.y];
+        if (targetContainer.isOccupied)
+        {
+            Window occupiedWindow = targetContainer.transform.GetComponentInChildren<Window>();
+            SwapWindows(occupiedWindow, targetWindow);
+        }
+        else
+        {
+            targetWindow.transform.parent = windowManager.transform;
+            targetWindow.transform.LeanMove(targetContainer.transform.position, 0.2f);
+            targetWindow.transform.SetParent(targetContainer.transform);
+            targetContainer.UpdateOccupancy();
+            currentContainer.UpdateOccupancy();
+        }
+
+    }
+
+    private void SwapWindows(Window _occupiedWindow, Window _targetWindow)
+    {
+        WindowContainer currentContainer = targetWindow.transform.parent.GetComponentInParent<WindowContainer>();
+        Vector2Int targetContainerIndex = currentContainer.containerIndex + directionToVector[moveDirection];
+        WindowContainer targetContainer = windowManager.WindowContainer2DArray[targetContainerIndex.x, targetContainerIndex.y];
+        _targetWindow.transform.LeanMove(targetContainer.transform.position, 0.2f);
+        _occupiedWindow.transform.LeanMove(currentContainer.transform.position, 0.2f);
+        _targetWindow.transform.SetParent(targetContainer.transform);
+        _occupiedWindow.transform.SetParent(currentContainer.transform);
+        targetContainer.UpdateOccupancy();
+        currentContainer.UpdateOccupancy();
     }
 
     public override void Complete()
