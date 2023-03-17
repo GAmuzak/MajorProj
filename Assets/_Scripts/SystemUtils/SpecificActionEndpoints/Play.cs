@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class Play : InteractableMonoBehaviour
 {
-    [SerializeField] private Image playImage;
+    [SerializeField] private Image playStatusImage;
+    [SerializeField] private Sprite playImage;
+    [SerializeField] private Sprite pauseImage;
     private MusicPlayerManager musicPlayer;
     private AudioSource audioSource;
     private Window musicPlayerWindow;
@@ -25,11 +27,13 @@ public class Play : InteractableMonoBehaviour
         {
             PauseMusic();
             isPlaying = false;
+            playStatusImage.sprite = pauseImage;
         }
         else
         {
             PlayMusic();
             isPlaying = true;
+            playStatusImage.sprite = playImage;
         }
     }
 
