@@ -53,6 +53,6 @@ public class GestureIconManager : MonoBehaviour
 }
 
 [Serializable]
-public class GestureIconDict : SerializableDictionary<HandGestureIdentifier, GestureIcon> {}
+public class GestureIconDict : SerializableDictionary<SystemAction, GestureIcon> {}
 
 

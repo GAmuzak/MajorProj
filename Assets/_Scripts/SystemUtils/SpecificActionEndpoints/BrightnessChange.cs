@@ -15,13 +15,21 @@ public class BrightnessChange : InteractableMonoBehaviour
 
     private void Awake()
     {
-        brightness=transform.parent.GetComponent<Brightness>();
-        upOrDown = state == IncreaseOrDecrease.Increase ? 1 : -1;
+        brightness = transform.parent.GetComponent<Brightness>();
+        brightnessCanvasGroup = brightness.brightnessCanvasGroup;
+
+        upOrDown = state switch
+        {
+            IncreaseOrDecrease.Increase => 1,
+            IncreaseOrDecrease.Decrease => -1,
+            IncreaseOrDecrease.Neutral => 0,
+            _ => throw new ArgumentOutOfRangeException()
+        };
     }
 
     public override void Interact()
     {
-        brightnessCanvasGroup.alpha = LeanTween.linear(brightnessCanvasGroup.alpha, 1f, 0.1f);
+        brightnessCanvasGroup.alpha = 1f;
         float newVal = brightness.CurrentVal+ upOrDown*brightness.Sensitivity;
         brightness.Adjust(newVal);
         OnBrightnessChange?.Invoke(newVal);
@@ -29,6 +37,6 @@ public class BrightnessChange : InteractableMonoBehaviour
 
     public override void Complete()
     {
-        brightnessCanvasGroup.alpha = LeanTween.linear(brightnessCanvasGroup.alpha, 0f, 0.1f);
+        brightnessCanvasGroup.alpha = 0f;
     }
 }

@@ -1,4 +1,6 @@
-﻿public enum SystemAction
+﻿using Unity.VisualScripting;
+
+public enum SystemAction
 {
     NULL=-1,
     BrightnessUp=0,
@@ -12,5 +14,14 @@
     WindowLeft = 8,
     WindowRight = 9,
     OpenWindow = 10,
-    OpenAppManager = 11
+    OpenAppManager = 11,
+    BrightnessNeutral = 12,
+    VolumeNeutral = 13,
+    PlayMusic = 14,
+    NextTrack = 15,
+    PreviousTrack = 16,
+    ScrollUp = 17,
+    ScrollDown = 18,
+    ScrollLeft = 19,
+    ScrollRight = 20
 }

@@ -45,8 +45,8 @@ MonoBehaviour:
       _secondState: 8
   - _feature: 3
     _thresholds:
-    - _thresholdMidpoint: 0.015
-      _thresholdWidth: 0.01
+    - _thresholdMidpoint: 0.031541016
+      _thresholdWidth: 0.020469012
       _firstState: 9
       _secondState: 10
     - _thresholdMidpoint: 0.15

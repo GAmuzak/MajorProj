@@ -9,25 +9,25 @@ public class HandGestureIdentifier : MonoBehaviour
     private GestureIconManager gestureIconManager;
     void Start()
     {
-        Debug.Log($"{gameObject.name}: {utilityGesture}");
+       // Debug.Log($"{gameObject.name}: {utilityGesture}");
         gestureIconManager = FindObjectOfType<GestureIconManager>();
         
     }
 
     public void SelectedGesture()
     {
-        Debug.Log(utilityGesture);
+        //Debug.Log(utilityGesture);
         HandInputManager.Instance.ActivateGesture(utilityGesture, gestureContinuity);
-        if(gestureIconManager.FunctionToIconManager.ContainsKey(this))
-            gestureIconManager.FunctionToIconManager[this].ChangeTint(1f);
+        if(gestureIconManager.FunctionToIconManager.ContainsKey(utilityGesture))
+            gestureIconManager.FunctionToIconManager[utilityGesture].ChangeTint(1f);
     }
     
     public void UnSelectedGesture()
     {
-        Debug.Log($"{"Unselected"}: {utilityGesture}");
+        //Debug.Log($"{"Unselected"}: {utilityGesture}");
         HandInputManager.Instance.DeactivateGesture(utilityGesture);
-        if(gestureIconManager.FunctionToIconManager.ContainsKey(this))
-            gestureIconManager.FunctionToIconManager[this].ChangeTint(0.5f);
+        if(gestureIconManager.FunctionToIconManager.ContainsKey(utilityGesture))
+            gestureIconManager.FunctionToIconManager[utilityGesture].ChangeTint(0.5f);
     }
     
 }
