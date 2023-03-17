@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class BrightnessChange : InteractableMonoBehaviour
 {
     public static event Action<float> OnBrightnessChange;
+    private CanvasGroup brightnessCanvasGroup;
     [SerializeField] private IncreaseOrDecrease state;
 
     private Brightness brightness;
@@ -19,6 +21,7 @@ public class BrightnessChange : InteractableMonoBehaviour
 
     public override void Interact()
     {
+        brightnessCanvasGroup.alpha = LeanTween.linear(brightnessCanvasGroup.alpha, 1f, 0.1f);
         float newVal = brightness.CurrentVal+ upOrDown*brightness.Sensitivity;
         brightness.Adjust(newVal);
         OnBrightnessChange?.Invoke(newVal);
@@ -26,6 +29,6 @@ public class BrightnessChange : InteractableMonoBehaviour
 
     public override void Complete()
     {
-        //Not Relevant yet
+        brightnessCanvasGroup.alpha = LeanTween.linear(brightnessCanvasGroup.alpha, 0f, 0.1f);
     }
 }

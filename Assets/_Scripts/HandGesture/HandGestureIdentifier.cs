@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Oculus.Interaction;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class HandGestureIdentifier : MonoBehaviour
 {
@@ -21,7 +17,7 @@ public class HandGestureIdentifier : MonoBehaviour
     public void SelectedGesture()
     {
         Debug.Log(utilityGesture);
-        HandInputManager.ActivateGesture(utilityGesture, gestureContinuity);
+        HandInputManager.Instance.ActivateGesture(utilityGesture, gestureContinuity);
         if(gestureIconManager.FunctionToIconManager.ContainsKey(this))
             gestureIconManager.FunctionToIconManager[this].ChangeTint(1f);
     }
@@ -29,7 +25,7 @@ public class HandGestureIdentifier : MonoBehaviour
     public void UnSelectedGesture()
     {
         Debug.Log($"{"Unselected"}: {utilityGesture}");
-        HandInputManager.DeactivateGesture(utilityGesture);
+        HandInputManager.Instance.DeactivateGesture(utilityGesture);
         if(gestureIconManager.FunctionToIconManager.ContainsKey(this))
             gestureIconManager.FunctionToIconManager[this].ChangeTint(0.5f);
     }

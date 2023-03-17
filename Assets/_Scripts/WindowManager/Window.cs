@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Window : InteractableMonoBehaviour
-{ // Start is called before the first frame update
-    void Start()
+{
+    public Vector2Int containerIndex;
+    public bool isSelected;
+    public bool isOpen;
+    private Image cursorSprite;
+    void Awake()
     {
-        
+        cursorSprite = GetComponent<Image>();
+        cursorSprite.enabled = false;
     }
 
     // Update is called once per frame
@@ -23,6 +29,12 @@ public class Window : InteractableMonoBehaviour
     public override void Complete()
     {
         
+    }
+
+    public void ActivateCursor(bool activationState)
+    {
+        cursorSprite.enabled = activationState;
+        isSelected = activationState;
     }
     
 }

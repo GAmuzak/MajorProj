@@ -1,17 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
+using Utilities;
 
-public class HandInputManager : MonoBehaviour
+public class HandInputManager : SingletonMonoBehavior<HandInputManager>
 {
-    public static UnityEvent<SystemAction, bool> activateGesture = new UnityEvent<SystemAction, bool>();
-    public static UnityEvent<SystemAction, bool> deactivateGesture = new UnityEvent<SystemAction, bool>();
     public static SystemAction passedAction;
     public static GestureContinuity continuity;
     private static bool isAnalog;
+
     void Update()
     {
         if (isAnalog)
@@ -20,7 +15,7 @@ public class HandInputManager : MonoBehaviour
         }
     }
 
-    public static void ActivateGesture(SystemAction executeAction, GestureContinuity _continuity)
+    public void ActivateGesture(SystemAction executeAction, GestureContinuity _continuity)
     {
         passedAction = executeAction;
         isAnalog = _continuity == GestureContinuity.Continuous;
@@ -28,11 +23,14 @@ public class HandInputManager : MonoBehaviour
         ServiceWrapper.Instance.ExecuteService(passedAction);
     }
     
-    public static void DeactivateGesture(SystemAction executeAction)
+    public void DeactivateGesture(SystemAction executeAction)
     {
-        Debug.Log($"{"Unselected in Input Manager"}: {executeAction}");
+        Debug.Log($"Unselected in Input Manager: {executeAction}");
         isAnalog = false;
         ServiceWrapper.Instance.EndService(executeAction);
+        
     }
-    
+
+
+
 }

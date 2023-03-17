@@ -7,8 +7,10 @@
     VolumeDown=3,
     Mute=4,
     Enable = 5,
-    WindowUP = 6,
+    WindowUp = 6,
     WindowDown = 7,
     WindowLeft = 8,
-    WindowRight = 9
+    WindowRight = 9,
+    OpenWindow = 10,
+    OpenAppManager = 11
 }
