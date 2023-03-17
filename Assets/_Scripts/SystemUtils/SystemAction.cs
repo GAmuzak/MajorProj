@@ -23,5 +23,9 @@ public enum SystemAction
     ScrollUp = 17,
     ScrollDown = 18,
     ScrollLeft = 19,
-    ScrollRight = 20
+    ScrollRight = 20,
+    ChangePanelRight = 21,
+    ChangePanelLeft = 22,
+    PlayVideo = 23,
+    PauseVideo = 24
 }
