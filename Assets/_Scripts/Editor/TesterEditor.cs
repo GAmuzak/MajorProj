@@ -10,8 +10,7 @@ public class TesterEditor : Editor
         
         if(GUILayout.Button("Activate"))
         {
-            tester.Activate(out string message);
-            Debug.Log(message);
+            tester.Activate();
         }
         
         if(GUILayout.Button("Deactivate")) tester.Deactivate();

@@ -8,10 +8,9 @@ public class Tester : MonoBehaviour
 
     private bool isActive = false;
 
-    public void Activate(out string message)
+    public void Activate()
     {
         isActive = true;
-        message = transform.forward.ToString();
     }
     
     public void Deactivate()
