@@ -3000,7 +3000,6 @@ GameObject:
   m_Component:
   - component: {fileID: 530374429}
   - component: {fileID: 530374437}
-  - component: {fileID: 530374436}
   - component: {fileID: 530374435}
   - component: {fileID: 530374438}
   - component: {fileID: 530374434}
@@ -3124,18 +3123,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 530374435}
-        m_TargetAssemblyTypeName: HandGestureIdentifier, Assembly-CSharp
-        m_MethodName: SelectedGesture
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 530374438}
         m_TargetAssemblyTypeName: HandGestureIdentifier, Assembly-CSharp
         m_MethodName: SelectedGesture
@@ -3151,18 +3138,6 @@ MonoBehaviour:
   _whenUnselected:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 530374435}
-        m_TargetAssemblyTypeName: HandGestureIdentifier, Assembly-CSharp
-        m_MethodName: UnSelectedGesture
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 530374435}
         m_TargetAssemblyTypeName: HandGestureIdentifier, Assembly-CSharp
         m_MethodName: UnSelectedGesture
@@ -3201,20 +3176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   utilityGesture: 15
   gestureContinuity: 0
---- !u!114 &530374436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 530374428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81cae44e878ea048a18bdfeeb22aeef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  utilityGesture: 20
-  gestureContinuity: 1
 --- !u!114 &530374437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3265,7 +3226,7 @@ MonoBehaviour:
       _worldAxis: 0
       _handAxis: 0
       _headAxis: 0
-  _minVelocity: 0.75
+  _minVelocity: 0.5
   _thresholdWidth: 0.02
   _minTimeInState: 0.05
 --- !u!1 &565988192
@@ -3278,7 +3239,6 @@ GameObject:
   m_Component:
   - component: {fileID: 565988193}
   - component: {fileID: 565988202}
-  - component: {fileID: 565988201}
   - component: {fileID: 565988200}
   - component: {fileID: 565988199}
   - component: {fileID: 565988198}
@@ -3402,18 +3362,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 565988200}
-        m_TargetAssemblyTypeName: HandGestureIdentifier, Assembly-CSharp
-        m_MethodName: SelectedGesture
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 565988199}
         m_TargetAssemblyTypeName: HandGestureIdentifier, Assembly-CSharp
         m_MethodName: SelectedGesture
@@ -3429,18 +3377,6 @@ MonoBehaviour:
   _whenUnselected:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 565988200}
-        m_TargetAssemblyTypeName: HandGestureIdentifier, Assembly-CSharp
-        m_MethodName: UnSelectedGesture
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 565988200}
         m_TargetAssemblyTypeName: HandGestureIdentifier, Assembly-CSharp
         m_MethodName: UnSelectedGesture
@@ -3493,20 +3429,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   utilityGesture: 16
   gestureContinuity: 0
---- !u!114 &565988201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 565988192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b81cae44e878ea048a18bdfeeb22aeef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  utilityGesture: 19
-  gestureContinuity: 1
 --- !u!114 &565988202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10961,7 +10883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: 3
-  sensitivity: 11
+  sensitivity: 33
   scrollRect: {fileID: 0}
 --- !u!114 &1835434738
 MonoBehaviour:
@@ -10976,7 +10898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: 2
-  sensitivity: 11
+  sensitivity: 33
   scrollRect: {fileID: 0}
 --- !u!114 &1835434739
 MonoBehaviour:
@@ -10991,7 +10913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: 1
-  sensitivity: 11
+  sensitivity: 33
   scrollRect: {fileID: 0}
 --- !u!114 &1835434740
 MonoBehaviour:
@@ -11006,7 +10928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: 0
-  sensitivity: 11
+  sensitivity: 33
   scrollRect: {fileID: 0}
 --- !u!1 &1845800475
 GameObject:
