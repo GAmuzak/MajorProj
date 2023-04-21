@@ -10,6 +10,7 @@ public class Brightness : MonoBehaviour
 {
     [Range(0.01f,0.5f)] [SerializeField] private float sensitivity;
     [SerializeField] private PostProcessProfile brightness;
+    public CanvasGroup brightnessCanvasGroup;
 
     private AutoExposure exposure;
     
@@ -21,6 +22,7 @@ public class Brightness : MonoBehaviour
     {
         brightness.TryGetSettings(out exposure);
         Debug.Log(exposure);
+        brightnessCanvasGroup = transform.parent.GetComponent<CanvasGroup>();
     }
 
     public void Adjust(float val)

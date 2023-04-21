@@ -49,17 +49,12 @@ public class GestureIcon : MonoBehaviour
                 break;
         }
     }
-
-    public void EnableIcon(bool activate)
-    {
-        imageColor = activate? new Color(1,1,1,0.25f) : new Color(255,255,255,0);
-        sprite.color = imageColor;
-    }
+    
 
     public void ChangeTint(float alpha)
     {
-        Color imageColor = new Color(1,1,1,alpha);
-        sprite.color = imageColor;
+        Color spriteColor = new Color(1,1,1,alpha);
+        sprite.color = spriteColor;
     }
     
     private void Update()

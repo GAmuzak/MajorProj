@@ -8,6 +8,11 @@ public class Timer
     public bool State;
     public float Time;
 
+    public Timer(bool InitialState, float coolDownTime)
+    {
+        State = InitialState;
+        Time = coolDownTime;
+    }
     public IEnumerator Cooldown(bool finalState)
     {
         Debug.Log("tIMER sTARTED");
